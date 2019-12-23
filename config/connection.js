@@ -12,5 +12,8 @@ connection.connect(function(err) {
     if (err) {
         console.log(err);
     }
-    console.log("Is connected!");
+    console.log("Mysql is connected!");
 });
+
+// Export connection for the orm
+module.exports = connection;
