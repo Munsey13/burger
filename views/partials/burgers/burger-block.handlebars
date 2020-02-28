@@ -1,8 +1,4 @@
-<li class="m-1">
-	{{name}}
-
-	<button class="change-burger btn btn-light btn-sm" data-id="{{id}}" data-eaten="{{eaten}}">
-		{{#if eaten}}I'd like another!{{else}}Let's Eat!{{/if}}
-	</button>
-
+<li>
+    {{burger_name}}
+    <button class="changeDevoured" data-id="{{id}}" data-devoured="{{devoured}}">{{#if devoured}}I like it! Another! {{else}}NOM NOM NOM!{{/if}}</button>
 </li>

@@ -1,70 +1,44 @@
 $(function() {
-    $(".change-burger").on("click", function(event) {
-
-        let id = $(this).data("id");
-        let letsEat = $(this).data("eaten");
-
-        if (!letsEat) {
-          letsEat = true
-        } else (
-          letsEat = false
-        )
-
-        let letsEatState = {
-        eaten: letsEat
-        };
-
-        $.ajax("/api/burgers/" + id, {
-        type: "PUT",
-        data: letsEatState
-        }).then(
-        function() {
-            location.reload();
-        }
-        );
-    });
-  
-    $(".create-form").on("submit", function(event) {
-      event.preventDefault();
-
-      let burgerName = $("#burgerName").val().trim()
-
-      if (burgerName === "") {
-
-        let image = "assets/img/order.jpg"
-
-        let modalImage = $("<img>")
-        .attr("src", image)
-        .addClass("img-fluid")
-        .attr("alt", "Responsive image")
+  $(".changeDevoured").on("click", function(event) {
+      let id = $(this).data("id");
+      let devoured = $(this).data("devoured");
       
-        $("#bonQuiQuiPhoto").html(modalImage)
-        $("#complicatedOrder").modal('show')
-        return
-      } 
-
-      var newBurger = {
-        name: burgerName
+      if (devoured) {
+          devoured = false
+      } else {
+          devoured = true
       };
 
-      $.ajax("/api/burgers", {
-        type: "POST",
-        data: newBurger
-      }).then(
-        function() {
-          bonQuiQuiPhoto()
-          $("#complicatedOrder").modal('show')
-        }
-      );
-  
-      
-    });
-    
-    $("#closeButton").on("click" , function(event){
-      reloadPage()
-    })
+      let devouredState = {
+          devoured: devoured
+      };
+
+$.ajax("/api/burgers/" + id, {
+  type: "PUT",
+  data: devouredState,
+}).then(
+  function() {
+      console.log("Changed 'Devoured' to", devouredState);
+      location.reload();
+      });
+  });
 });
 
-function reloadPage() {
-  location.reload();
-}
+// Button click to add burger/POST request
+$(".burger-form").on("submit", function(event) {
+  event.preventDefault();
+  let newBurger = {
+      burger_name: $("#burgerName").val().trim(),
+  };
+
+// POST request
+$.ajax("/api/burgers", {
+  type: "POST",
+  data: newBurger
+}).then(
+  function() {
+      console.log("Created new burger");
+      location.reload();
+  }
+)
+});

@@ -1,44 +1,36 @@
 <div class="row">
 
-    <div class="col-sm boxes rounded-sm m-2 p-1">
-        <h2 class="text-center">Current Order(s)</h2>
+        <div class="col-sm-1">
+        </div>
 
-        <ul>
-            {{#each burgers}}
-            {{#unless eaten}}
-            {{> burgers/burger-block eaten=false}}
-            {{/unless}}
-            {{/each}}
-        </ul>
+        <div class="col-sm-4 orderBox">
+            <h2>Current Order:</h2>
+            <ul>
+                {{#each burgers}}
+                    {{#unless devoured}}
+                    {{> burger-block devoured=false}}
+                    {{/unless}}
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="col-sm-2">
+        </div>
+
+        <div class="col-sm-4 orderBox">
+            <h2>Past Orders:</h2>
+            <ul>
+                {{#each burgers}}
+                    {{#if devoured}}
+                    {{> burger-block devoured=true}}
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="col-sm-1">
+        </div>
+
     </div>
 
 
-    <div class="col-sm boxes rounded-sm m-2 p-1">
-        <h2 class="text-center">Prevest Order(s)</h2>
-
-        <ul>
-            {{#each burgers}}
-            {{#if eaten}}
-            {{> burgers/burger-block eaten=true}}
-            {{/if}}
-            {{/each}}
-        </ul>
-    </div>
-
-</div>
-
-
-<div class="row text-center">
-    <div class="col-sm m-2 p-2 rounded-sm boxes">
-        <h2>Add burger</h2>
-        <form class="create-form">
-
-            <div class="form-group">
-                <label>Burger Name</label>
-                <input type="text" name="name" id="burgerName">
-            </div>
-
-            <button type="submit">Complete Order</button>
-        </form>
-    </div>
-</div>
