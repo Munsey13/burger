@@ -33,7 +33,7 @@ const orm = {
         cb(result);
         });
     },
-    insertOne: function(table, cols, vals, cb) {
+    create: function(table, cols, vals, cb) {
         let queryString = "INSERT INTO " + table;
         queryString += " (";
         queryString += cols.toString();
